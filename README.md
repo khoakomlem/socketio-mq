@@ -156,4 +156,4 @@ const server = new Server(3000) // Socket.io server will lift at http://localhos
 [stars-shield]: https://img.shields.io/github/stars/khoakomlem/socketio-mq.svg?style=for-the-badge
 [stars-url]: https://github.com/khoakomlem/socketio-mq/stargazers
 [license-shield]: https://img.shields.io/github/license/khoakomlem/socketio-mq.svg?style=for-the-badge
-[license-url]: https://github.com/khoakomlem/socketio-mq/blob/master/LICENSE.md
+[license-url]: https://github.com/khoakomlem/socketio-mq/blob/main/license.md
