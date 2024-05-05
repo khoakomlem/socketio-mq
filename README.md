@@ -4,7 +4,6 @@
 [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fkhoakomlem%2Fsocketio-mq%2F&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=Visitors&edge_flat=true)](https://hits.seeyoufarm.com)
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
-[![MIT License][license-shield]][license-url]
 
 <!-- PROJECT LOGO -->
 <br />
@@ -155,5 +154,3 @@ const server = new Server(3000) // Socket.io server will lift at http://localhos
 [forks-url]: https://github.com/khoakomlem/socketio-mq/network/members
 [stars-shield]: https://img.shields.io/github/stars/khoakomlem/socketio-mq.svg?style=for-the-badge
 [stars-url]: https://github.com/khoakomlem/socketio-mq/stargazers
-[license-shield]: https://img.shields.io/github/license/khoakomlem/socketio-mq.svg?style=for-the-badge
-[license-url]: https://github.com/khoakomlem/socketio-mq/blob/main/license.md
