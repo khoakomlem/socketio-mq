@@ -3,8 +3,10 @@
 		"experimentalDecorators": true,
 		"emitDecoratorMetadata": true,
 		"declaration": true,
-		"declarationDir": "./output",
-		"outDir": "./output",
-		"rootDir": "./src"
+		"sourceMap": true,
+		"declarationMap": true,
+		"rootDir": "./src",
+		"target": "es5",
+		"moduleResolution": "node"
 	}
 }
