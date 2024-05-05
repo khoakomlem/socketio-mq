@@ -61,8 +61,8 @@ import { RemoteHandler, StaticClient, Server } from "socketio-mq"
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 
 class ServiceA extends StaticClient {
- id = "service-a"
- url = "http://localhost:3000"
+ static id = "service-a"
+ static url = "http://localhost:3000"
 
  // Use @RemoteHandler for register method as "remote-able" or else these methods will be recognize as not "remote-able" and throw error if trying to use remote
  @RemoteHandler
@@ -82,14 +82,14 @@ class ServiceB extends StaticClient {
 
 const server = new Server(3000)
 
-const a = ServiceA.getInstance() // Singleton support (ip and url is defined in class)
-const b = new ServiceB("service-b", "http://localhost:3000") // Construct new instance (will override "ip" or "url" if you specific in constructor params)
+const serviceA = ServiceA.getInstance() // Singleton support (ip and url is defined in class)
+const serviceB = new ServiceB("service-b", "http://localhost:3000") // Construct new instance (will override "ip" or "url" if you specific in constructor params)
 
-const remoteB = a.use(ServiceB, "service-b") // Create remote service B
+const remoteB = serviceA.use(ServiceB, "service-b") // Create remote service B
 
 ;(async () => {
  const user = await remoteB.getUser(1) // remote call
- const post = await a.getPosts(1) // normal call
+ const post = await serviceA.getPosts(1) // normal call
 
  console.log(`user: ${JSON.stringify(user)}, post: ${post}`)
 })()
@@ -104,9 +104,8 @@ import { DynamicClient, Server } from "socketio-mq"
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 
-const server = new Server(3000)
-
 // Define events map first
+
 type EventMapA = {
  getPosts: (userID: number) => Promise<string[]>
 }
@@ -115,10 +114,17 @@ type EventMapB = {
  getUser: (id: number) => Promise<{ id: number; name: string }>
 }
 
-const a = new DynamicClient<EventMapA>("service-a", "http://localhost:3000")
-const b = new DynamicClient<EventMapB>("service-b", "http://localhost:3000")
+const server = new Server(3000)
+const serviceA = new DynamicClient<EventMapA>(
+ "service-a",
+ "http://localhost:3000"
+)
+const serviceB = new DynamicClient<EventMapB>(
+ "service-b",
+ "http://localhost:3000"
+)
 
-b.on("getUser", async (id: number) => {
+serviceB.on("getUser", async (id: number) => {
  await delay(1000)
  return { id, name: "John Doe" }
 })
@@ -128,16 +134,15 @@ b.on("getUser", async (id: number) => {
 //  await delay(1000)
 //  return ["post1", "post2", "post3"]
 // })
-
 ;(async () => {
- const remoteB = a.use<EventMapB>("service-b")
- 
+ const remoteB = serviceA.use<EventMapB>("service-b")
+
  const user = await remoteB.getUser(1)
- const post = await a.useSelf().getPosts(1)
+ const post = await serviceA.useSelf().getPosts(1)
  console.log(`user ${JSON.stringify(user)}, post: ${post}`)
 })().catch((e) => {
- // Will log error: Handler for event "getPosts" is not found!
  console.log("We got an error: ", e)
+ // Error: Client "service-a" does not have a handler for event "getPosts". Make sure to call the "on" method to register the handler!
 })
 ```
 
