@@ -3,6 +3,9 @@ import { RequestData, ResponseData } from "./types"
 import { MethodKeys } from "./utils"
 
 export class StaticClient {
+	static id: string
+	static url: string
+
 	id: string
 	url: string
 	master: SocketIOClient
@@ -18,24 +21,27 @@ export class StaticClient {
 	}
 
 	constructor(id?: string, url?: string) {
-		if (!id && !this.id) {
+		// @ts-ignore
+		this.id = id || this.constructor.id
+		// @ts-ignore
+		this.url = url || this.constructor.url
+
+		if (!this.id) {
 			throw new Error(
 				"Client id is required. Make sure to pass it as first argument in constructor or set it as default value in class definition. Ex: new Client('service-a')"
 			)
 		}
-		if (!url && !this.url) {
+		if (!this.url) {
 			throw new Error(
 				"Socket server url is required. Make sure to pass it as second argument in constructor or set it as default value in class definition. Ex: new Client('service-a', 'http://localhost:3000')"
 			)
 		}
-		this.id = id || this.id
-		this.url = url || this.url
 
-		this.master = IOClient(url, {
+		this.master = IOClient(this.url, {
 			query: { id: this.id },
 		})
 		this.master.on("receive", async (data: RequestData, callback) => {
-			console.log("Received", data)
+			// console.log("Received", data)
 			try {
 				const handler = this.remoteHandlers.get(data.event)
 				if (!handler)
