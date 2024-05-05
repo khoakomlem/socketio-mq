@@ -1,10 +1,11 @@
 {
   "name": "socketio-mq",
+  "version": "0.0.2",
   "description": "A simple message queue using socket.io (typescript support)",
   "main": "dist/main/index.js",
   "module": "dist/module/index.js",
   "scripts": {
-    "build": "rollup -c --clean"
+    "build": "rollup -c"
   },
   "dependencies": {
     "socket.io": "^4.7.5",
