@@ -17,7 +17,7 @@
     An integration of typing with Socket.IO and message queue
     <br />
     <br />
-    <a href="https://khoakomlem.github.io/socketio-mq/public/">View Demo</a>
+    <a href="https://codesandbox.io/p/devbox/eager-cohen-srcycy">View Demo</a>
     ·
     <a href="https://github.com/khoakomlem/socketio-mq/issues">Report Bug</a>
     ·
