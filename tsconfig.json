@@ -1,0 +1,10 @@
+{
+	"compilerOptions": {
+		"experimentalDecorators": true,
+		"emitDecoratorMetadata": true,
+		"declaration": true,
+		"declarationDir": "./output",
+		"outDir": "./output",
+		"rootDir": "./src"
+	}
+}
