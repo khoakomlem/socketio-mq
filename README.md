@@ -155,6 +155,10 @@ import { Server } from "socketio-mq"
 const server = new Server(3000) // Socket.io server will lift at http://localhost:3000
 ```
 
+## Conclusion
+
+This package is "message queue" but still has lacks of features to be a full-featured message queue. It's more like a "message broker" for now, would be the best if you guys can help me to improve this package. Thanks! 🙏
+
 [forks-shield]: https://img.shields.io/github/forks/khoakomlem/socketio-mq.svg?style=for-the-badge
 [forks-url]: https://github.com/khoakomlem/socketio-mq/network/members
 [stars-shield]: https://img.shields.io/github/stars/khoakomlem/socketio-mq.svg?style=for-the-badge
